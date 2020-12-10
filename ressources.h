@@ -10,7 +10,8 @@ typedef struct ressources_s
     SDL_Texture *bird;       
     SDL_Texture *mur1;         
     SDL_Texture *mur2;         
-    SDL_Texture *man;          
+    SDL_Texture *man;
+    SDL_Texture *shit;          
 } ressources_t;
 
 

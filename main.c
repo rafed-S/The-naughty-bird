@@ -13,23 +13,24 @@
 
 void main()
 {
-	SDL_Renderer *renderer;
-	SDL_Window *window;
-	SDL_Event event;
-	jeu_t jeu1;
-	ressources_t ressources;
+    SDL_Renderer *renderer;
+    SDL_Window *window;
+    SDL_Event event;
+    jeu_t jeu1;
+    ressources_t ressources;
 
-	init(&window, &renderer, &ressources, &jeu1); 
+    init(&window, &renderer, &ressources, &jeu1); 
 
-	do 
-	{
-		Evenements(&event, &jeu1);
-		Affichage(renderer, &jeu1, &ressources);
-	} while (fin_jeu(&jeu1)  == 0) ;
+    do 
+    {
+        Evenements(&event, &jeu1);
+        refresh_game(&jeu1);
+        Affichage(renderer, &jeu1, &ressources);
+        
+    } while (fin_jeu(&jeu1)  == 0) ;
 
-	clean(window, renderer, &ressources, &jeu1);
+    clean(window, renderer, &ressources, &jeu1);
 
-	
 }
 
 
