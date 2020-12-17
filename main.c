@@ -8,6 +8,7 @@
 #include "ressources.h"
 #include "jeu.h"
 #include "renderer.h"
+#include "keyboard_event.h"
 #endif
 
 

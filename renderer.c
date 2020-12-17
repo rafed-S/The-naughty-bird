@@ -11,9 +11,19 @@ void Affichage(SDL_Renderer *renderer, jeu_t *jeu, ressources_t *ressources)
 if (ressources->screen != NULL)
     {
         apply_texture(ressources->screen, renderer, 0, 0);
-        apply_texture(ressources->mur1, renderer, 400, 415);
-        apply_texture(ressources->mur2, renderer, 700, -40);
-        apply_texture(ressources->man, renderer, 700, 710);
+        apply_texture(ressources->mur1, renderer, 400, 500);
+        apply_texture(ressources->mur1, renderer, 650, 0);
+        //apply_texture(ressources->mur2, renderer, 550, 0);
+        apply_texture(ressources->man, renderer, 700, 700);
+    }
+    
+    if (jeu->niveau == 2)
+    {
+        apply_texture(ressources->screen, renderer, 0, 0);
+        apply_texture(ressources->mur1, renderer, 700, 500);
+        apply_texture(ressources->mur1, renderer, 1200, 0);
+        //apply_texture(ressources->mur2, renderer, 550, 0);
+        apply_texture(ressources->man, renderer, 1500, 700);
     }
 
     apply_sprite(renderer, ressources->bird, jeu->bird);
