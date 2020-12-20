@@ -21,7 +21,7 @@ void init_jeu(jeu_t *jeu)
     init_data(jeu->shit, NB_SHITS);
     init_shit(jeu);
 
-}
+} 
 
 void init_data(sprite_t *tab[], int total)
 {
@@ -83,17 +83,16 @@ void next_niveau(jeu_t *jeu)
 
 void refresh_game(jeu_t *jeu)
 {
-    ++jeu->timer;
-    //refresh_bird_horizontal(jeu, jeu->bird);
-    refresh_shit(jeu);
-    
-    if(crash_condition(jeu ,jeu->bird) == 1)
+if(crash_condition(jeu ,jeu->bird) == 1)
     {
         jeu->fin = 1;
     }else if(crash_condition(jeu ,jeu->bird) == 2)
     {
         next_niveau(jeu);
     }
+    ++jeu->timer;
+    refresh_bird_horizontal(jeu, jeu->bird);
+    refresh_shit(jeu);
 }
 
 

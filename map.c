@@ -35,15 +35,19 @@ void sprite_map_niveau_1(jeu_t *jeu)
 
 int crash_condition(jeu_t *jeu, sprite_t *bir)
 {
-    for(int i=0; i<NB_MUR_1; i++)
+ for(int i=0; i<NB_MUR_1; i++)
     {
-       if(bir->x+BIRD_SIZE/2 >= jeu->tab_mur1_x[i] && bir->x-BIRD_SIZE/2 <= jeu->tab_mur1_x[i] +MUR_1_LARGEUR)
+        for(int l=0;l<=MUR_1_HAUTEUR;l=l+BIRD_SIZE/10)
+            //Le PGCD de (MUR_1_HAUTEUR et BIRD_SIZE) = 10
         {
-            if(bir->y+BIRD_SIZE/2 >= jeu->tab_mur1_y[i] && bir->y-BIRD_SIZE/2 <= jeu->tab_mur1_y[i] + MUR_1_HAUTEUR)
+            if(pow(jeu->tab_mur1_x[i]-bir->x,2)+pow(jeu->tab_mur1_y[i]+l-bir->y,2) <=         pow(BIRD_SIZE/2,2))
+            {
+                return 1;
+            }else if(pow(jeu->tab_mur1_x[i]+MUR_1_LARGEUR - bir->x,2)+pow(jeu->tab_mur1_y[i]+l-bir->y,2) <= pow(BIRD_SIZE/2,2))
             {
                 return 1;
             }
-        } 
+        }
     }
     if(jeu->bird->x+BIRD_SIZE/2 == WIDTH)
     {

@@ -7,11 +7,12 @@
 typedef struct ressources_s
 {
     SDL_Texture *screen;  
-    SDL_Texture *bird;       
+    SDL_Texture *bird[5];   
     SDL_Texture *mur1;         
     SDL_Texture *mur2;         
     SDL_Texture *man;
-    SDL_Texture *shit;          
+    SDL_Texture *shit;  
+    int com,af;        
 } ressources_t;
 
 

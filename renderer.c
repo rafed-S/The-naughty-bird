@@ -25,11 +25,10 @@ if (ressources->screen != NULL)
         //apply_texture(ressources->mur2, renderer, 550, 0);
         apply_texture(ressources->man, renderer, 1500, 700);
     }
-
-    apply_sprite(renderer, ressources->bird, jeu->bird);
+    
+    Animation(renderer,jeu,ressources);
     refresh_sprite_shit(renderer, ressources->shit, jeu->shit, NB_SHITS);
     SDL_RenderPresent(renderer);
-    SDL_Delay(10);
 
 }
 
@@ -51,6 +50,8 @@ void init(SDL_Window **window, SDL_Renderer **renderer, ressources_t *ressources
 void apply_sprite(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite)
 {
     apply_texture(texture, renderer, sprite->x - (BIRD_SIZE / 2), sprite->y -  (BIRD_SIZE / 2)); 
+        SDL_Delay(10);
+
 }
 
 void refresh_sprite_shit(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *tab[], int total)
