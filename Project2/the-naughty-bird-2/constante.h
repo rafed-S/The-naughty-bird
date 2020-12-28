@@ -5,5 +5,43 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
+#define fenetHauteur 800
+#define fenetLargeur 1100
+#define BirdHauteur 100
+#define BirdLargeur 100
+#define BlocJeu_Hauteur 100
+#define BlocJeu_Largeur 100
+
+
+struct sprite_s
+{
+    double vx, vy; 
+    int w, h; 
+    SDL_Rect dest; 
+};
+typedef struct sprite_s sprite_t;
+
+
+struct bloc_s
+{
+    SDL_Rect rect;
+    int type
+};
+typedef struct bloc_s bloc_t;
+
+
+struct map_s
+{
+    
+    int x, y;
+    int x_jeu, y_jeu; 
+    bloc_t* tab1;
+    int** num; 
+    SDL_Texture* sprite; 
+    int xglobal, yglobal;
+};
+typedef struct map_s map_t;
+
+
 
 #endif

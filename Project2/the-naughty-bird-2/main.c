@@ -5,5 +5,11 @@
 
 int main(int argc, char* argv[])
 {
-
+    SDL_Renderer *renderer;
+    SDL_Event event;
+    jeu_t jeu;
+    renderer = init_sdl();
+    init_jeu(&jeu, renderer);
+    SDL_Quit();
 }
+
