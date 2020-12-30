@@ -7,6 +7,7 @@
 
 
 void refresh_screen(jeu_t* jeu, SDL_Renderer* renderer);
+void screen_end(jeu_t* jeu, SDL_Renderer* renderer);
 
 
 

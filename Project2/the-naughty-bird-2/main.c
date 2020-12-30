@@ -10,6 +10,14 @@ int main(int argc, char* argv[])
     jeu_t jeu;
     renderer = init_sdl();
     init_jeu(&jeu, renderer);
-    SDL_Quit();
+    
+  while(!jeu.endgame){
+
+        handle_events(&jeu, &event);
+    }
+    
+    screen_end(&jeu, renderer);
+    SDL_Quit(); 
+
 }
 

@@ -29,16 +29,15 @@ struct bloc_s
 };
 typedef struct bloc_s bloc_t;
 
-
 struct map_s
 {
     
     int x, y;
     int x_jeu, y_jeu; 
-    bloc_t* tab1;
-    int** num; 
+    tile_t* tabMap;
+    int** numT; 
     SDL_Texture* sprite; 
-    int xglobal, yglobal;
+    int xGlobal, yGlobal;
 };
 typedef struct map_s map_t;
 

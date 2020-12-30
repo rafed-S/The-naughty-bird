@@ -45,12 +45,80 @@ map_t* charger_map(jeu_t* jeu, SDL_Renderer* renderer){
     printf("impossible de trouver le fichier");
     SDL_Quit();
   }
-
+    charger_blocs(F, map, renderer);
+    charger_niveau(F, map);
+    fclose(F);
+    map->xGlobal =0;
+    map->yGlobal = map->yGlobal*BlocJeu_Hauteur - fenetHauteur ;
   return map;
+
 }
+
+
+void charger_blocs(FILE* F, map_t* m, SDL_Renderer* renderer){
+
+    int N,i,j;
+    char NomFichier[1000], blocs[1000];
+    fscanf(F,"%s",NomFichier);
+    SDL_Surface* tmp = SDL_LoadBMP("ressources/jeu.bmp");
+    if (tmp==NULL)
+    {
+        printf("Image introuvable !! \n");
+        SDL_Quit();
+        exit(-1);
+    }
+    m->tileset = SDL_CreateTextureFromSurface(renderer, tmp);
+    SDL_FreeSurface(tmp);
+    
+    fscanf(F,"%d %d",&m->x,&m->y);
+
+    m->tabMap = malloc(m->x*m->y*sizeof(tile_t));
+    for(j=0,N=0;j<m->y;j++)
+    {
+        for(i=0;i<m->x;i++,N++)
+        {
+            m->tabMap[N].rect.w = BlocJeu_Largeur;
+            m->tabMap[N].rect.h = BlocJeu_Hauteur;
+            m->tabMap[N].rect.x = i*BlocJeu_Largeur;
+            m->tabMap[N].rect.y = j*BlocJeu_Hauteur;
+            fscanf(F,"%s",blocs);
+      
+            m->tabMap[N].typeT = 1;
+            if (strcmp(blocs,"plein")==0){
+                m->tabMap[N].typeT = 0;
+            }
+            if (strcmp(blocs,"victory") == 0){
+                m->tabMap[N].typeT = 2;
+            }
+        }
+    }
+}
+
 
 
 void charger_niveau(FILE* F,map_t* m){
 
+  int i,j;  
+    fscanf(F,"%d %d",&m->x_jeu,&m->y_jeu);
+    m->numT = malloc(m->x_jeu*sizeof(int*));
 
+    for(i=0;i<m->x_jeu;i++){
+        m->numT[i] = malloc(m->y_jeu*sizeof(int));
+    }
+
+    for(j=0;j<m->y_jeu;j++)
+    {
+        for(i=0;i<m->x_jeu;i++)
+        {
+            int tmp;
+            fscanf(F,"%d",&tmp);
+            if (tmp>=m->x*m->y)
+            {
+                printf("level hors limite\n");
+                SDL_Quit();
+                exit(-1);
+            }
+            m->numT[i][j] = tmp;
+        }
+    }
 }

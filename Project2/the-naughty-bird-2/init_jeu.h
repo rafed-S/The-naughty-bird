@@ -6,6 +6,7 @@
 struct jeu_s
 {
     bool gameover;
+    bool endgame;
     SDL_Texture* texture_bird; 
     sprite_t* bird;
     map_t* map; 
@@ -19,6 +20,7 @@ sprite_t* init_bird();
 SDL_Renderer* init_sdl();
 map_t* charger_map(jeu_t* jeu, SDL_Renderer* renderer);
 void charger_niveau(FILE* F, map_t* m);
+void charger_blocs(FILE* F, map_t* m, SDL_Renderer* renderer){
 
 
 #endif
